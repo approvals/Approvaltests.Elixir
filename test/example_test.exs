@@ -31,8 +31,13 @@ defmodule ExampleTest do
     File.write!("test/candidate.txt", candidate_items)
 
     approved_items = File.read!("test/approved.txt")
-    assert(approved_items |> String.replace("\r\n", "\n")== candidate_items |> String.replace("\r\n", "\n"))
+
+    assert(
+      approved_items |> String.replace("\r\n", "\n") ==
+        candidate_items |> String.replace("\r\n", "\n")
+    )
   end
+
   # end-snippet
 
   def update_quality(data), do: data
