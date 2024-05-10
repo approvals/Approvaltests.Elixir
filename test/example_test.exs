@@ -1,7 +1,10 @@
 defmodule ExampleTest do
+  defmodule Item do
+    defstruct name: nil, sell_in: nil, quality: nil
+  end
 
   use ExUnit.Case
-  
+
   # begin-snippet: guilded_rose_example
   test "Approval test" do
     input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
