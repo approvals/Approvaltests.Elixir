@@ -49,5 +49,5 @@ test "Approval test" do
   )
 end
 ```
-<sup><a href='/test/example_test.exs#L4-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-guilded_rose_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/example_test.exs#L8-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-guilded_rose_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
