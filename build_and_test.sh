@@ -1,3 +1,2 @@
 #!/bin/bash -e
-
-mix push_check
+sh -c "$(cat build_and_tests.bat)"
