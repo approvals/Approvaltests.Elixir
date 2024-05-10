@@ -1,7 +1,6 @@
 defmodule ExampleTest do
-
   use ExUnit.Case
-  
+
   # begin-snippet: guilded_rose_example
   test "Approval test" do
     input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
@@ -28,8 +27,13 @@ defmodule ExampleTest do
     File.write!("test/candidate.txt", candidate_items)
 
     approved_items = File.read!("test/approved.txt")
-    assert(approved_items |> String.replace("\r\n", "\n")== candidate_items |> String.replace("\r\n", "\n"))
+
+    assert(
+      approved_items |> String.replace("\r\n", "\n") ==
+        candidate_items |> String.replace("\r\n", "\n")
+    )
   end
+
   # end-snippet
 
   def update_quality(data), do: data
