@@ -1,0 +1,16 @@
+on: 
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '25 6 * * SUN'  # <https://crontab.guru/#45_16_*_*_0> 
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: '26'
+          elixir-version: '1.16'
+      - run: mix push_check
