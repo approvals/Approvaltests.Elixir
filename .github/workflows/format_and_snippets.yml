@@ -1,0 +1,32 @@
+name: Formatting and Snippets
+
+on: 
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '25 6 * * SUN'  # <https://crontab.guru/#45_16_*_*_0> 
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: '26'
+          elixir-version: '1.16'
+      - run: mix format
+      - name: run markdown snippets
+        run: |
+          dotnet tool install --global MarkdownSnippets.Tool
+          mdsnippets ${GITHUB_WORKSPACE}
+        shell: bash
+      - name: Git Commit and Push
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: "${secrets.GITHUB_TOKEN}"
+          commit-message: ". d updated markdown snippets"
+          rebase: 'true'
+          push-branch: 'main'
+          name: github actions
+          email: actions@github.com
