@@ -3,6 +3,9 @@ defmodule ExApproval do
   Helper functions to implement approval testing
   """
 
+  @doc "Parameters for the current approval test"
+  defstruct [:project_name, :test_name, :file_extension, :file_path]
+
   @spec gen_test_data_set(keyword(), fun()) :: list()
   @doc """
   creates a list of parameter sets that contains all the permutations of the

@@ -1,9 +1,21 @@
 defmodule ExampleTest do
+
+  use ExUnit.Case
+
   defmodule Item do
     defstruct name: nil, sell_in: nil, quality: nil
   end
 
-  use ExUnit.Case
+  def config() do
+    %ExApproval{
+      project_name: "ex_approval",
+      test_name: "example",
+      file_extension: "txt",
+      file_path: "test"
+    }
+  end
+
+
 
   # begin-snippet: guilded_rose_example
   test "Approval test" do
@@ -28,9 +40,9 @@ defmodule ExampleTest do
       update_quality(test_data)
       |> inspect(pretty: true, infinity: true)
 
-    File.write!(Namer.received_name("ex_approval", "example", "txt", "test"), received_output)
+    File.write!(Namer.received_name(config()), received_output)
 
-    approved_output = File.read!(Namer.approved_name("ex_approval", "example", "txt", "test"))
+    approved_output = File.read!(Namer.approved_name(config()))
 
     assert(
       approved_output |> String.replace("\r\n", "\n") ==

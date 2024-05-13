@@ -62,13 +62,22 @@ defmodule ExApprovalTest do
     assert not ExApproval.same?(diffs)
   end
 
+  defp config() do
+    %ExApproval{
+      project_name: "project",
+      test_name: "test",
+      file_extension: "txt",
+      file_path: "test"
+    }
+  end
+
   test "received name" do
-    assert Namer.received_name("project", "test", "txt", "test") ==
+    assert Namer.received_name(config()) ==
              "test/project.test.received.txt"
   end
 
   test "approved name" do
-    assert Namer.approved_name("project", "test", "txt", "test") ==
+    assert Namer.approved_name(config()) ==
              "test/project.test.approved.txt"
   end
 end
