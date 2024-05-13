@@ -20,3 +20,4 @@
 * [Example Elixir Starter Project](https://github.com/LearnWithLlew/elixir.starterproject)
 * [approval docs](https://github.com/approvals/ApprovalTests.Documentation/tree/main/explanations)
 * [Theory of](https://docs.divio.com/documentation-system/)
+* [We are using Arlos Commit Notation](https://github.com/RefactoringCombos/ArlosCommitNotation)
