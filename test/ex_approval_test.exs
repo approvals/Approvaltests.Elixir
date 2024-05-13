@@ -63,10 +63,12 @@ defmodule ExApprovalTest do
   end
 
   test "received name" do
-    assert Namer.received_name("project", "test", "txt", "test") == "test/project.test.received.txt"
+    assert Namer.received_name("project", "test", "txt", "test") ==
+             "test/project.test.received.txt"
   end
 
   test "approved name" do
-    assert Namer.approved_name("project", "test", "txt", "test") == "test/project.test.approved.txt"
+    assert Namer.approved_name("project", "test", "txt", "test") ==
+             "test/project.test.approved.txt"
   end
 end

@@ -36,17 +36,17 @@ test "Approval test" do
     ]
     |> ExApproval.gen_test_data_set(input_builder)
 
-  candidate_items =
+  received_output =
     update_quality(test_data)
     |> inspect(pretty: true, infinity: true)
 
-  File.write!("test/candidate.txt", candidate_items)
+  File.write!(Namer.received_name("ex_approval", "example", "txt", "test"), received_output)
 
-  approved_items = File.read!("test/approved.txt")
+  approved_output = File.read!(Namer.approved_name("ex_approval", "example", "txt", "test"))
 
   assert(
-    approved_items |> String.replace("\r\n", "\n") ==
-      candidate_items |> String.replace("\r\n", "\n")
+    approved_output |> String.replace("\r\n", "\n") ==
+      received_output |> String.replace("\r\n", "\n")
   )
 end
 ```
