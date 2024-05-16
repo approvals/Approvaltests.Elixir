@@ -1,4 +1,4 @@
-defmodule ExApproval do
+defmodule Approvals do
   @moduledoc """
   Helper functions to implement approval testing
   """
@@ -31,6 +31,14 @@ defmodule ExApproval do
           ) do
       submap
     end
+  end
+
+  def verify(data) do
+    verify(data, %Approvals{})
+  end
+
+  def verify(_data, _config) do
+    nil
   end
 
   @spec same?(keyword()) :: boolean()

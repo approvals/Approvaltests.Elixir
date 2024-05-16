@@ -14,7 +14,7 @@ defmodule Namer do
   def approved_name(config), do: name(config, "approved")
 
   defp name(
-         %ExApproval{
+         %Approvals{
            project_name: project_name,
            test_name: test_name,
            file_extension: extension,

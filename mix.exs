@@ -1,4 +1,4 @@
-defmodule ExApproval.MixProject do
+defmodule ExApprovalss.MixProject do
   use Mix.Project
 
   @code_url "https://github.com/BigTom/approvaltest.elixir"

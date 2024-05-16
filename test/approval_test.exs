@@ -1,6 +1,6 @@
-defmodule ExApprovalTest do
+defmodule ApprovalsTest do
   use ExUnit.Case
-  doctest ExApproval
+  doctest Approvals
 
   test "diffs in one line" do
     diffs =
@@ -9,7 +9,7 @@ defmodule ExApprovalTest do
         "The quick brown fox jumps over the lazy dog."
       )
 
-    assert assert ExApproval.same?(diffs)
+    assert assert Approvals.same?(diffs)
   end
 
   test "diffs empty -> written strings" do
@@ -19,7 +19,7 @@ defmodule ExApprovalTest do
         "test"
       )
 
-    assert assert not ExApproval.same?(diffs)
+    assert assert not Approvals.same?(diffs)
   end
 
   test "diffs empty strings" do
@@ -29,7 +29,7 @@ defmodule ExApprovalTest do
         ""
       )
 
-    assert assert ExApproval.same?(diffs)
+    assert assert Approvals.same?(diffs)
   end
 
   test "diffs in one multiline" do
@@ -43,7 +43,7 @@ defmodule ExApprovalTest do
         """
       )
 
-    assert ExApproval.same?(diffs)
+    assert Approvals.same?(diffs)
   end
 
   test "diffs in multiline" do
@@ -59,11 +59,11 @@ defmodule ExApprovalTest do
         """
       )
 
-    assert not ExApproval.same?(diffs)
+    assert not Approvals.same?(diffs)
   end
 
   defp config do
-    %ExApproval{
+    %Approvals{
       project_name: "project",
       test_name: "test",
       file_extension: "txt",

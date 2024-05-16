@@ -4,6 +4,6 @@ defmodule Writer do
   """
 
   def write(config, content) do
-    File.write!(Namer.received_name(config), content)
+    File.write!(Namer.received_name(config), String.replace(content, "\r\n", "\n"))
   end
 end

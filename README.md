@@ -1,4 +1,4 @@
-# Approval Testing Framework for Elixir
+# Approvals Testing Framework for Elixir
 [![.github/workflows/test.yml](../../actions/workflows/test.yml/badge.svg)](../../actions/workflows/test.yml)
 
 
@@ -18,7 +18,7 @@ A test looks something like the one below.
 <!-- snippet: guilded_rose_example -->
 <a id='snippet-guilded_rose_example'></a>
 ```exs
-test "Approval test" do
+test "Approvalss test" do
   input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
     %Item{name: name, sell_in: sell_in, quality: quality}
   end

@@ -12,7 +12,7 @@ defmodule ExampleTest do
   # begin-snippet: guilded_rose_example
 
   def config do
-    %ExApproval{
+    %Approvals{
       project_name: "ex_approval",
       test_name: "example",
       file_extension: "txt",
@@ -20,7 +20,7 @@ defmodule ExampleTest do
     }
   end
 
-  test "Approval test" do
+  test "Approvals test" do
     input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
       %Item{name: name, sell_in: sell_in, quality: quality}
     end
@@ -36,7 +36,7 @@ defmodule ExampleTest do
         sell_in: [-1, 0, 1, 10, 50],
         quality: [0, 1, 49, 50]
       ]
-      |> ExApproval.gen_test_data_set(input_builder)
+      |> Approvals.gen_test_data_set(input_builder)
 
     received_output =
       GuildedRose.update_quality(test_data)
@@ -46,11 +46,12 @@ defmodule ExampleTest do
 
     approved_output = File.read!(Namer.approved_name(config()))
 
-    assert(
-      approved_output |> String.replace("\r\n", "\n") ==
-        received_output |> String.replace("\r\n", "\n")
-    )
+    assert(approved_output == received_output)
   end
 
   # end-snippet
+
+  test "simple test" do
+    "Hello World" |> Approvals.verify()
+  end
 end
