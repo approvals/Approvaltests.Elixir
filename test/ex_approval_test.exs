@@ -62,7 +62,7 @@ defmodule ExApprovalTest do
     assert not ExApproval.same?(diffs)
   end
 
-  defp config() do
+  defp config do
     %ExApproval{
       project_name: "project",
       test_name: "test",

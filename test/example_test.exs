@@ -1,12 +1,17 @@
 defmodule ExampleTest do
-
   use ExUnit.Case
 
   defmodule Item do
     defstruct name: nil, sell_in: nil, quality: nil
   end
 
-  def config() do
+  defmodule GuildedRose do
+    def update_quality(data), do: data
+  end
+
+  # begin-snippet: guilded_rose_example
+
+  def config do
     %ExApproval{
       project_name: "ex_approval",
       test_name: "example",
@@ -15,9 +20,6 @@ defmodule ExampleTest do
     }
   end
 
-
-
-  # begin-snippet: guilded_rose_example
   test "Approval test" do
     input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
       %Item{name: name, sell_in: sell_in, quality: quality}
@@ -37,7 +39,7 @@ defmodule ExampleTest do
       |> ExApproval.gen_test_data_set(input_builder)
 
     received_output =
-      update_quality(test_data)
+      GuildedRose.update_quality(test_data)
       |> inspect(pretty: true, infinity: true)
 
     File.write!(Namer.received_name(config()), received_output)
@@ -51,6 +53,4 @@ defmodule ExampleTest do
   end
 
   # end-snippet
-
-  def update_quality(data), do: data
 end
