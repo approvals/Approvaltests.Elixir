@@ -37,7 +37,7 @@ defmodule Approvals do
     verify(data, %Approvals{})
   end
 
-  def verify(_data, _config) do
+  def verify(_data, _options) do
     nil
   end
 

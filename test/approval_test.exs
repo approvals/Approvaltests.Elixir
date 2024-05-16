@@ -1,5 +1,6 @@
 defmodule ApprovalsTest do
   use ExUnit.Case
+
   doctest Approvals
 
   test "diffs in one line" do
@@ -79,5 +80,10 @@ defmodule ApprovalsTest do
   test "approved name" do
     assert Namer.approved_name(config()) ==
              "test/project.test.approved.txt"
+  end
+
+  test "get revieved name" do
+    parts = Namer.get_namer_parts()
+    assert parts[:source_file_name] == "approval_test"
   end
 end
