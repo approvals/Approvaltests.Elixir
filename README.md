@@ -18,7 +18,16 @@ A test looks something like the one below.
 <!-- snippet: guilded_rose_example -->
 <a id='snippet-guilded_rose_example'></a>
 ```exs
-test "Approvalss test" do
+def config do
+  %Approvals{
+    project_name: "ex_approval",
+    test_name: "example",
+    file_extension: "txt",
+    file_path: "test"
+  }
+end
+
+test "Approvals test" do
   input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
     %Item{name: name, sell_in: sell_in, quality: quality}
   end
@@ -34,21 +43,18 @@ test "Approvalss test" do
       sell_in: [-1, 0, 1, 10, 50],
       quality: [0, 1, 49, 50]
     ]
-    |> ExApproval.gen_test_data_set(input_builder)
+    |> Approvals.gen_test_data_set(input_builder)
 
   received_output =
-    update_quality(test_data)
+    GuildedRose.update_quality(test_data)
     |> inspect(pretty: true, infinity: true)
 
-  File.write!(Namer.received_name("ex_approval", "example", "txt", "test"), received_output)
+  Writer.write(config(), received_output)
 
-  approved_output = File.read!(Namer.approved_name("ex_approval", "example", "txt", "test"))
+  approved_output = File.read!(Namer.approved_name(config()))
 
-  assert(
-    approved_output |> String.replace("\r\n", "\n") ==
-      received_output |> String.replace("\r\n", "\n")
-  )
+  assert(approved_output == received_output)
 end
 ```
-<sup><a href='/test/example_test.exs#L8-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-guilded_rose_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/example_test.exs#L12-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-guilded_rose_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

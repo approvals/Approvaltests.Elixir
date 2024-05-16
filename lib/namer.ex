@@ -35,6 +35,8 @@ defmodule Namer do
     |> elem(1)
     |> to_string()
     |> String.split(~r"(/|\.)")
-    |> then(fn bits -> Enum.zip([:directory, :source_file_name, :source_file_extension], bits) |> Enum.into(%{}) end)
+    |> then(fn bits ->
+      Enum.zip([:directory, :source_file_name, :source_file_extension], bits) |> Enum.into(%{})
+    end)
   end
 end
