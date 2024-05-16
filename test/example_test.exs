@@ -42,7 +42,7 @@ defmodule ExampleTest do
       GuildedRose.update_quality(test_data)
       |> inspect(pretty: true, infinity: true)
 
-    File.write!(Namer.received_name(config()), received_output)
+    Writer.write(config(), received_output)
 
     approved_output = File.read!(Namer.approved_name(config()))
 
