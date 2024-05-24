@@ -1,6 +1,8 @@
 defmodule ExampleTest do
   use ExUnit.Case
 
+  require Approvals
+
   defmodule Item do
     defstruct name: nil, sell_in: nil, quality: nil
   end
@@ -40,17 +42,8 @@ defmodule ExampleTest do
     received_output =
       GuildedRose.update_quality(test_data)
       |> inspect(pretty: true, infinity: true)
-
-    Writer.write(config(), received_output)
-
-    approved_output = File.read!(Namer.approved_name(config()))
-
-    assert(approved_output == received_output)
+      |> Approvals.verify()
   end
 
   # end-snippet
-
-  test "simple test" do
-    "Hello World" |> Approvals.verify()
-  end
 end

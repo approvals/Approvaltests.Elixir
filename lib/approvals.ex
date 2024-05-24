@@ -1,4 +1,6 @@
 defmodule Approvals do
+  require ExUnit.Assertions
+
   @moduledoc """
   Helper functions to implement approval testing
   """
@@ -33,12 +35,25 @@ defmodule Approvals do
     end
   end
 
-  def verify(data) do
-    verify(data, %Approvals{})
+  defmacro verify(data) do
+    quote do
+      config = __ENV__.file |> Namer.get_parts()
+      Approvals.verify(unquote(data), config)
+      # (__ENV__.file) |> Namer.get_parts()
+    end
   end
 
-  def verify(_data, _options) do
-    nil
+  # def verify(data) do
+  #   options = Namer.get_parts()
+  #   verify(var!(data), options)
+  # end
+
+  def verify(data, options) do
+    Writer.write(options, data)
+
+    approved_data = File.read!(Namer.approved_name(options))
+
+    ExUnit.Assertions.assert(approved_data == data)
   end
 
   @spec same?(keyword()) :: boolean()

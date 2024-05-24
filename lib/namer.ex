@@ -25,15 +25,25 @@ defmodule Namer do
     path <> "/" <> file_name
   end
 
-  defmacro get_namer_parts() do
-    __CALLER__.file
+  def get_parts(caller_file) do
+    caller_file
     |> String.replace_prefix(File.cwd!(), "")
     |> String.split(~r"(/|\.)")
     |> fileparts()
-    |> Macro.escape()
   end
 
-  defp fileparts([_ | bits]) do
-    Enum.zip([:directory, :source_file_name, :source_file_extension], bits) |> Enum.into(%{})
+  defp fileparts(parts) do
+    fileparts(parts, "txt")
+  end
+
+  defp fileparts([_, path, test_name, _], extension) do
+    project_name = Mix.Project.config()[:app] |> Atom.to_string()
+
+    %Approvals{
+      project_name: project_name,
+      file_path: path,
+      test_name: test_name,
+      file_extension: extension
+    }
   end
 end

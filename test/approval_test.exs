@@ -83,7 +83,13 @@ defmodule ApprovalsTest do
   end
 
   test "get revieved name" do
-    parts = Namer.get_namer_parts()
-    assert parts[:source_file_name] == "approval_test"
+    __ENV__.file
+    parts = Namer.get_parts(__ENV__.file)
+    IO.inspect(parts, label: "PARTS TEST")
+    assert parts.test_name == "approval_test"
+  end
+
+  test "simple test" do
+    "Hello World" |> Approvals.verify()
   end
 end
