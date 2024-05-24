@@ -1,4 +1,5 @@
 defmodule ApprovalsTest do
+  require Namer
   use ExUnit.Case
 
   doctest Approvals
@@ -65,7 +66,6 @@ defmodule ApprovalsTest do
 
   defp config do
     %Approvals{
-      project_name: "project",
       test_name: "test",
       file_extension: "txt",
       file_path: "test"
@@ -74,12 +74,12 @@ defmodule ApprovalsTest do
 
   test "received name" do
     assert Namer.received_name(config()) ==
-             "test/project.test.received.txt"
+             "test/test.received.txt"
   end
 
   test "approved name" do
     assert Namer.approved_name(config()) ==
-             "test/project.test.approved.txt"
+             "test/test.approved.txt"
   end
 
   test "get revieved name" do

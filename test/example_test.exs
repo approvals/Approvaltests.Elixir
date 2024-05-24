@@ -13,7 +13,6 @@ defmodule ExampleTest do
 
   def config do
     %Approvals{
-      project_name: "ex_approval",
       test_name: "example",
       file_extension: "txt",
       file_path: "test"

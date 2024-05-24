@@ -1,4 +1,4 @@
-# Approvals Testing Framework for Elixir
+# Approval Testing Framework for Elixir
 [![.github/workflows/test.yml](../../actions/workflows/test.yml/badge.svg)](../../actions/workflows/test.yml)
 
 
@@ -19,7 +19,7 @@ A test looks something like the one below.
 <a id='snippet-guilded_rose_example'></a>
 ```exs
 def config do
-  %Approvals{
+  %ExApproval{
     project_name: "ex_approval",
     test_name: "example",
     file_extension: "txt",
@@ -27,7 +27,7 @@ def config do
   }
 end
 
-test "Approvals test" do
+test "Approval test" do
   input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
     %Item{name: name, sell_in: sell_in, quality: quality}
   end
@@ -43,7 +43,7 @@ test "Approvals test" do
       sell_in: [-1, 0, 1, 10, 50],
       quality: [0, 1, 49, 50]
     ]
-    |> Approvals.gen_test_data_set(input_builder)
+    |> ExApproval.gen_test_data_set(input_builder)
 
   received_output =
     GuildedRose.update_quality(test_data)
@@ -53,8 +53,11 @@ test "Approvals test" do
 
   approved_output = File.read!(Namer.approved_name(config()))
 
-  assert(approved_output == received_output)
+  assert(
+    approved_output |> String.replace("\r\n", "\n") ==
+      received_output |> String.replace("\r\n", "\n")
+  )
 end
 ```
-<sup><a href='/test/example_test.exs#L12-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-guilded_rose_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/example_test.exs#L12-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-guilded_rose_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
