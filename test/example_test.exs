@@ -13,13 +13,17 @@ defmodule ExampleTest do
 
   # begin-snippet: guilded_rose_example
 
-  def config do
-    %Approvals{
-      test_name: "example",
-      file_extension: "txt",
-      file_path: "test"
-    }
-  end
+  # If you want to set up special output file names you can define the parts here
+  # otherwise they default to the test file name.
+  
+  # def config do
+  #   %Approvals{
+  #     project_name: "approval_tests",
+  #     test_name: "example_test",
+  #     file_extension: "txt",
+  #     file_path: "test"
+  #   }
+  # end
 
   test "Approvals test" do
     input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
@@ -39,10 +43,8 @@ defmodule ExampleTest do
       ]
       |> Approvals.gen_test_data_set(input_builder)
 
-    received_output =
-      GuildedRose.update_quality(test_data)
-      |> inspect(pretty: true, infinity: true)
-      |> Approvals.verify()
+    GuildedRose.update_quality(test_data)
+    |> Approvals.verify()
   end
 
   # end-snippet

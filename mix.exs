@@ -42,8 +42,8 @@ defmodule ExApprovalss.MixProject do
 
   defp aliases do
     [
-      check: ["deps.get", "format", "test", "credo --format=sarif --strict"],
-      push_check: ["deps.get", "test", "credo --format=sarif --strict"]
+      check: ["deps.get", "format", "test --cover", "credo --strict"],
+      push_check: ["deps.get", "test --cover", "credo --format=sarif --strict"]
     ]
   end
 

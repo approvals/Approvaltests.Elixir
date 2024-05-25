@@ -3,7 +3,16 @@ defmodule Writer do
     Writes output files.
   """
 
-  def write(config, content) do
-    File.write!(Namer.received_name(config), String.replace(content, "\r\n", "\n"))
+  def write(content, file_name) when is_binary(content) do
+    content
+    |> String.replace("\r\n", "\n")
+    |> then(&File.write!(file_name, &1))
+  end
+
+  def write(content, file_name) do
+    content
+    |> inspect(pretty: true, infinity: true)
+    |> String.replace("\r\n", "\n")
+    |> then(&File.write!(file_name, &1))
   end
 end
