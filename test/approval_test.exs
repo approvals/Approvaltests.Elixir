@@ -108,26 +108,26 @@ defmodule ApprovalsTest do
   end
 
   test "two category single item test data set" do
-    actual = Approvals.gen_test_data_set([x: [1], y: [2]], fn %{x: x, y: y} -> {x,y} end)
+    actual = Approvals.gen_test_data_set([x: [1], y: [2]], fn %{x: x, y: y} -> {x, y} end)
     expected = [{1, 2}]
-    assert (actual == expected)
+    assert actual == expected
   end
 
   test "two category 2:1 item count test data set" do
-    actual = Approvals.gen_test_data_set([x: [1, 2], y: [3]], fn %{x: x, y: y} -> {x,y} end)
+    actual = Approvals.gen_test_data_set([x: [1, 2], y: [3]], fn %{x: x, y: y} -> {x, y} end)
     expected = [{1, 3}, {2, 3}]
-    assert (actual == expected)
+    assert actual == expected
   end
 
   test "two category 1:2 item count test data set" do
-    actual = Approvals.gen_test_data_set([x: [1], y: [2, 3]], fn %{x: x, y: y} -> {x,y} end)
+    actual = Approvals.gen_test_data_set([x: [1], y: [2, 3]], fn %{x: x, y: y} -> {x, y} end)
     expected = [{1, 2}, {1, 3}]
-    assert (actual == expected)
+    assert actual == expected
   end
 
   test "two category two item test data set" do
-    actual = Approvals.gen_test_data_set([x: [1, 2], y: [3, 4]], fn %{x: x, y: y} -> {x,y} end)
+    actual = Approvals.gen_test_data_set([x: [1, 2], y: [3, 4]], fn %{x: x, y: y} -> {x, y} end)
     expected = [{1, 3}, {1, 4}, {2, 3}, {2, 4}]
-    assert (actual == expected)
+    assert actual == expected
   end
 end

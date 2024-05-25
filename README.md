@@ -18,13 +18,17 @@ A test looks something like the one below.
 <!-- snippet: guilded_rose_example -->
 <a id='snippet-guilded_rose_example'></a>
 ```exs
-def config do
-  %Approvals{
-    test_name: "example",
-    file_extension: "txt",
-    file_path: "test"
-  }
-end
+# If you want to set up special output file names you can define the parts here
+# otherwise they default to the test file name.
+
+# def config do
+#   %Approvals{
+#     project_name: "approval_tests",
+#     test_name: "example_test",
+#     file_extension: "txt",
+#     file_path: "test"
+#   }
+# end
 
 test "Approvals test" do
   input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
@@ -44,11 +48,9 @@ test "Approvals test" do
     ]
     |> Approvals.gen_test_data_set(input_builder)
 
-  received_output =
-    GuildedRose.update_quality(test_data)
-    |> inspect(pretty: true, infinity: true)
-    |> Approvals.verify()
+  GuildedRose.update_quality(test_data)
+  |> Approvals.verify()
 end
 ```
-<sup><a href='/test/example_test.exs#L14-L48' title='Snippet source file'>snippet source</a> | <a href='#snippet-guilded_rose_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/test/example_test.exs#L14-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-guilded_rose_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

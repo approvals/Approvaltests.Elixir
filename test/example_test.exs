@@ -15,7 +15,7 @@ defmodule ExampleTest do
 
   # If you want to set up special output file names you can define the parts here
   # otherwise they default to the test file name.
-  
+
   # def config do
   #   %Approvals{
   #     project_name: "approval_tests",
