@@ -22,28 +22,25 @@ defmodule Namer do
          type
        ) do
     file_name = [test_name, type, extension] |> Enum.join(".")
-    path <> "/" <> file_name
+    Path.join([path, file_name])
   end
 
   def get_parts(caller_file) do
     caller_file
-    |> String.replace_prefix(File.cwd!(), "")
-    |> String.split(~r"(/|\.)")
-    |> fileparts()
+    |> Path.relative_to(File.cwd!())
+    |> Path.rootname()
+    |> Path.split()
+    |> make_default_config()
   end
 
-  defp fileparts(parts) do
-    fileparts(parts, "txt")
-  end
-
-  defp fileparts([_, path, test_name, _], extension) do
+  defp make_default_config([path, test_name]) do
     project_name = Mix.Project.config()[:app] |> Atom.to_string()
 
     %Approvals{
       project_name: project_name,
       file_path: path,
       test_name: test_name,
-      file_extension: extension
+      file_extension: "txt"
     }
   end
 end
