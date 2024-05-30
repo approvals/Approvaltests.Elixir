@@ -35,13 +35,21 @@ defmodule Approvals do
     end
   end
 
+  @doc """
+  Generates a default options %Approval{} struct based on the calling test to pass to
+  the verify function.
+  """
   defmacro verify(data) do
     quote do
-      config = __ENV__.file |> Namer.get_parts()
-      Approvals.verify(unquote(data), config)
+      options = __ENV__.file |> Namer.get_parts()
+      Approvals.verify(unquote(data), options)
     end
   end
 
+  @doc """
+  Takes the generated output and the options %Approval{} struct to write the
+  data to a "received" file and compares it to the existing "approved" file.
+  """
   def verify(data, options) do
     received_file_name = Namer.received_name(options)
     Writer.write(data, received_file_name)
@@ -50,17 +58,5 @@ defmodule Approvals do
     approved_data = File.read!(Namer.approved_name(options))
 
     ExUnit.Assertions.assert(approved_data == received_data)
-  end
-
-  @spec same?(keyword()) :: boolean()
-  @doc """
-  Takes a diffset and returns true if there are no changes.
-  """
-  def same?([]), do: true
-
-  def same?(diffs) do
-    keys = Keyword.keys(diffs)
-
-    length(keys) == 1 && List.first(keys) == :equal
   end
 end

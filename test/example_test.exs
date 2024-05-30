@@ -25,7 +25,7 @@ defmodule ExampleTest do
   #   }
   # end
 
-  test "Approvals test" do
+  test "Example approvals test" do
     input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
       %Item{name: name, sell_in: sell_in, quality: quality}
     end
@@ -36,7 +36,8 @@ defmodule ExampleTest do
           "Others",
           "Aged Brie",
           "Backstage passes to a TAFKAL80ETC concert",
-          "Sulfuras, Hand of Ragnaros"
+          "Sulfuras, Hand of Ragnaros",
+          "Another"
         ],
         sell_in: [-1, 0, 1, 10, 50],
         quality: [0, 1, 49, 50]
