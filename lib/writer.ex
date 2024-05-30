@@ -11,7 +11,7 @@ defmodule Writer do
 
   def write(content, file_name) do
     content
-    |> inspect(pretty: true, infinity: true)
+    |> inspect(pretty: true, limit: :infinity)
     |> String.replace("\r\n", "\n")
     |> then(&File.write!(file_name, &1))
   end

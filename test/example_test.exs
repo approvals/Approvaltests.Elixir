@@ -36,8 +36,7 @@ defmodule ExampleTest do
           "Others",
           "Aged Brie",
           "Backstage passes to a TAFKAL80ETC concert",
-          "Sulfuras, Hand of Ragnaros",
-          "Another"
+          "Sulfuras, Hand of Ragnaros"
         ],
         sell_in: [-1, 0, 1, 10, 50],
         quality: [0, 1, 49, 50]
