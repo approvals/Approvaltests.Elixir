@@ -30,7 +30,7 @@ A test looks something like the one below.
 #   }
 # end
 
-test "Approvals test" do
+test "Example approvals test" do
   input_builder = fn %{name: name, sell_in: sell_in, quality: quality} ->
     %Item{name: name, sell_in: sell_in, quality: quality}
   end
