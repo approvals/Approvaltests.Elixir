@@ -54,9 +54,18 @@ defmodule Approvals do
     received_file_name = Namer.received_name(options)
     Writer.write(data, received_file_name)
 
-    received_data = File.read!(received_file_name)
-    approved_data = File.read!(Namer.approved_name(options))
+    approved_file_name = Namer.approved_name(options)
 
-    ExUnit.Assertions.assert(approved_data == received_data)
+    received_data = File.read!(received_file_name)
+    approved_data = File.read!(approved_file_name)
+
+    cond do
+      approved_data == received_data ->
+        true
+
+      true ->
+        System.cmd("code", ["-d", received_file_name, approved_file_name])
+        ExUnit.Assertions.assert(approved_data == received_data)
+    end
   end
 end
